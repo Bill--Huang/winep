@@ -1,0 +1,30 @@
+body {
+	margin: 0;
+	padding: 0;
+
+	margin: 30px;
+}
+
+#main-content {
+	width: 70%;
+	height: 100%;
+
+	margin: 0 auto;
+
+}
+
+#main-content ul li:first-child {
+  border-left: 0;
+}
+
+#main-content ul li {
+  border-left: 1px solid black;
+}
+
+.content-column {
+
+}
+
+.content-column img {
+  width: 40%;
+}
