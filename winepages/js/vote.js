@@ -14,6 +14,11 @@ jQuery(document).ready(function ($) {
     $('[data-slider]').on('change.fndtn.slider', function(){
         // do something when the value changes
 
+        var sliderValue = $('#wine-score-slider').attr('data-slider');
+        var tempOpacity = 1 - (sliderValue / 10);
+        // $("#gradient-bg").css("opacity", tempOpacity);
+        $("#gradient-bg").animate({opacity: tempOpacity}, 2);
+
         if(wineScore != $('#wine-score-slider').attr('data-slider')) {
             console.log($('#wine-score-slider').attr('data-slider'));
             wineScore = $('#wine-score-slider').attr('data-slider');

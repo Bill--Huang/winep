@@ -1,10 +1,12 @@
 <?php
 	
+	header("Access-Control-Allow-Origin: *");
+
 	$client_ip = $_SERVER["REMOTE_ADDR"];
 
 	$servername = "localhost";
-	$username = "root";
-	$password = "root";
+	$username = "root"; //"miugo";
+	$password = "root"; //"5dmetp6B";
 	$database = "winescore";
 
 	$conn = new mysqli($servername, $username, $password, $database);

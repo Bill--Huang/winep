@@ -1,8 +1,8 @@
 var ServiceHelper = {
 
-	sendURL: 'http://' + window.location.host + '/vote.php',
-	getURL1: 'http://' + window.location.host + '/personal_result.php',
-	getURL: 'http://' + window.location.host + '/average_result.php',
+	sendURL: 'http://' +document.domain + ':8080/vote.php',
+	getURL1: 'http://' + document.domain + ':8080/personal_result.php',
+	getURL: 'http://' + document.domain + ':8080/average_result.php',
 	
 	getWineScoreRequest: function (jsonData, successCallback, errorCallback) {
 		ServiceHelper.sendAjax(ServiceHelper.getURL, jsonData, successCallback, errorCallback);

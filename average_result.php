@@ -1,8 +1,10 @@
 <?php
 
+	header("Access-Control-Allow-Origin: *");
+
 	$servername = "localhost";
-	$username = "root";
-	$password = "root";
+	$username = "root"; //"miugo";
+	$password = "root"; //"5dmetp6B";
 	$database = "winescore";
 
 	$conn = new mysqli($servername, $username, $password, $database);
