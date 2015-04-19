@@ -1,9 +1,10 @@
 var ServiceHelper = {
 
-	sendURL: 'http://' +document.domain + ':8080/vote.php',
+	sendURL: 'http://' + document.domain + ':8080/vote.php',
 	getURL1: 'http://' + document.domain + ':8080/personal_result.php',
 	getURL: 'http://' + document.domain + ':8080/average_result.php',
 	
+	sessionURL: 'http://' + document.domain + ':8080/get_session.php',
 	getWineScoreRequest: function (jsonData, successCallback, errorCallback) {
 		ServiceHelper.sendAjax(ServiceHelper.getURL, jsonData, successCallback, errorCallback);
 	},
@@ -13,7 +14,8 @@ var ServiceHelper = {
 	},
 
 	sendSessionRequest: function (jsonData, successCallback, errorCallback) {
-		// ServiceHelper.sendAjax(ServiceHelper.url, jsonData, successCallback, errorCallback);
+		// must be sync
+		ServiceHelper.sendSyncAjax(ServiceHelper.sessionURL, jsonData, successCallback, errorCallback);
 	},
 
 	sendUpdateWineScore: function (jsonData, successCallback, errorCallback) {
@@ -22,8 +24,32 @@ var ServiceHelper = {
 		
 	},
 
+	sendSyncAjax: function(reqURL, jsonData, successCallback, errorCallback) {
+		// alert(jsonData);
+		$.ajax({
+			url: reqURL,
+		    type:'post', 
+		    data: jsonData,   
+    		cache: true,    
+    		dataType:'json', 
+    		async:false,
+		    success: function(data, textStatus) {
+		    	successCallback(data);
+		    	// console.log(textStatus);
+	         	// console.log(data);
+		    },
+
+		    error: function(XMLHttpRequest, textStatus, errorThrown) {    
+	         	// console.log(XMLHttpRequest); 
+	         	// console.log(textStatus);
+	         	// console.log(errorThrown);
+	         	errorCallback();   
+	    	}
+		});
+	},
 
 	sendAjax: function(reqURL, jsonData, successCallback, errorCallback) {
+		// alert(jsonData);
 		$.ajax({
 			url: reqURL,
 		    type:'post', 
@@ -33,17 +59,16 @@ var ServiceHelper = {
 
 		    success: function(data, textStatus) {
 		    	successCallback(data);
-		    	console.log(textStatus);
-	         	console.log(data);
+		    	// console.log(textStatus);
+	         	// console.log(data);
 		    },
 
 		    error: function(XMLHttpRequest, textStatus, errorThrown) {    
 	         	// console.log(XMLHttpRequest); 
-	         	console.log(textStatus);
-	         	console.log(errorThrown);
+	         	// console.log(textStatus);
+	         	// console.log(errorThrown);
 	         	errorCallback();   
 	    	}
-		    
 		});
 	},
 

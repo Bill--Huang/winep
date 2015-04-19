@@ -2,7 +2,11 @@
 	
 	header("Access-Control-Allow-Origin: *");
 
-	$client_ip = $_SERVER["REMOTE_ADDR"];
+	$dataArra = $_POST;
+
+	// client ip is uid
+	$client_ip = $dataArra["uid"];
+	// $client_ip = $_SERVER["REMOTE_ADDR"];
 
 	$servername = "localhost";
 	$username = "root"; //"miugo";

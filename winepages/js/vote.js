@@ -1,10 +1,41 @@
 jQuery(document).ready(function ($) {
     
+    var cookiesKey = "b_uid";
+    var cookiesValue =  $.cookie(cookiesKey);
+    var isCookies = false;
+
+    if(cookiesValue != undefined) {
+        // already have session
+        isCookies = true;
+        console.log("already have session");
+    } else {
+        // get session
+        ServiceHelper.sendSessionRequest(
+            {},
+            function(data) {
+                // get seesion
+                var uid = data['uid'];
+                $.cookie(cookiesKey, uid, { path: '/' });
+                cookiesValue = uid;
+                isCookies = true;
+
+                console.log(uid);
+            },
+
+            function() {
+
+            }
+
+        );
+    }
+
+
     document.title = "玛歌酒庄";
+
 
     // 根据 ip 对每次投票进行记录并最终得出统计
     var wineIndex = $('body').attr('data-role');
-    console.log(wineIndex);
+    // console.log(wineIndex);
 
     $(document).foundation();
     var wineScore = 5;
@@ -20,8 +51,10 @@ jQuery(document).ready(function ($) {
         $("#gradient-bg").animate({opacity: tempOpacity}, 2);
 
         if(wineScore != $('#wine-score-slider').attr('data-slider')) {
+
             console.log($('#wine-score-slider').attr('data-slider'));
             wineScore = $('#wine-score-slider').attr('data-slider');
+            
             sendData();
 
             if(wineIndex == 4) {
@@ -30,8 +63,15 @@ jQuery(document).ready(function ($) {
                     // final page
                     setTimeout(function() {
                         // show personal result page
+                        var id = document.domain;
+                        if(isCookies) {
+                            id = cookiesValue;
+                        }
+
                         ServiceHelper.getPersonalWineScoreRequest(
-                            {}, 
+                            {
+                                uid: cookiesValue
+                            }, 
                             function(data){
                                 // alert(data);
                                 var scoreTextArray = $('.content-column .score-div');
@@ -69,6 +109,7 @@ jQuery(document).ready(function ($) {
     function sendData() {
         ServiceHelper.sendUpdateWineScore(
             {
+                uid: cookiesValue,
                 wineIndex: wineIndex,
                 wineScore: wineScore
             }, 
