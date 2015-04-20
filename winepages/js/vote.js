@@ -7,7 +7,7 @@ jQuery(document).ready(function ($) {
     if(cookiesValue != undefined) {
         // already have session
         isCookies = true;
-        console.log("already have session");
+        console.log("already have session: " + cookiesValue);
     } else {
         // get session
         ServiceHelper.sendSessionRequest(
@@ -19,7 +19,7 @@ jQuery(document).ready(function ($) {
                 cookiesValue = uid;
                 isCookies = true;
 
-                console.log(uid);
+                console.log("new session: " + uid);
             },
 
             function() {
@@ -29,9 +29,7 @@ jQuery(document).ready(function ($) {
         );
     }
 
-
     document.title = "玛歌酒庄";
-
 
     // 根据 ip 对每次投票进行记录并最终得出统计
     var wineIndex = $('body').attr('data-role');

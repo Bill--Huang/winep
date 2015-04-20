@@ -16,19 +16,17 @@ jQuery(document).ready(function ($) {
                 var scoreTextArray = $('.content-column .score-div');
                 scoreTextArray.each(function(index, element) {
                     var temp = data['w' + (index + 1)];
-                    temp = ServiceHelper.decimal(temp, 1);
-
                     var standardLength = parseInt($("#width-standard").css("width"));
-
+                    var newL = parseInt(ServiceHelper.decimal(temp, 1) / 10 * standardLength);
+                    var oldL = parseInt($(element).css("width"));
+                    // console.log("new: " + newL);
+                    // console.log("old: " + oldL);
                     // 
-                    if((((temp / 10) * standardLength) + "px") != $(element).css("width")) {
-                        // console.log("new :" + (((temp / 10) * standardLength) + "px"));
-                        // console.log("old :" + $(element).css("width"));
-                        $(element).animate({width:(temp * 10) + "%"}, 500);
+                    if(newL != oldL) {
+                        // console.log("change");
+                        $(element).animate({width: newL + "px"}, 500);
                     }
-
                 });
-        
             }, 
             function(){
 
