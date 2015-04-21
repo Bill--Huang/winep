@@ -79,13 +79,29 @@ jQuery(document).ready(function ($) {
                                     $(element).css("width", (temp * 10) + "%");
                                 });
 
-                                $("#main-content").animate({opacity:'0'}, 1500, function(){
+
+                                $("#main-content").animate({opacity:'0'}, 1200, function(){
                                     $("#main-content").css('display', 'none');
                                 });
                                 $("body").addClass("personal-bg");
                                 document.title = "玛歌酒庄";
                                 $("#s-main-content").css('display', 'block');
-                                $("#s-main-content").animate({opacity:'1'}, 2000, function(){
+
+                                // ui
+                                var containerHeight = $("#s-score-cotianer").height();
+                                var winHeight = $("body").height();
+                                
+                                console.log(containerHeight);
+                                console.log(winHeight);
+                                if(containerHeight > (winHeight)) {
+                                    $(".content-imgs").css("width", "20%");
+                                    $(".content-score").css("margin-left", "20%");
+                                    // alert("change");
+                                    // $(".content-score").css("width", "80%");
+                                    console.log("change");
+                                }
+
+                                $("#s-main-content").animate({opacity:'1'}, 1500, function(){
 
                                 });
                             }, 
@@ -93,7 +109,7 @@ jQuery(document).ready(function ($) {
                                 
                             }
                         );
-                    }, 5000);
+                    }, 2000);
                 }
             }
         }
@@ -127,6 +143,10 @@ jQuery(document).ready(function ($) {
     if((imgHeight * 0.94) > (winHeight * 0.95)) {
         $('#wine-text').css('width', '62%');
     }
+
+    
+    
+
     // $('#main-content').css('height', winHeight);
     // $('#main-content-container').css('height', winHeight * 0.8);
 
