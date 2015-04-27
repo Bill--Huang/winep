@@ -88,14 +88,17 @@ jQuery(document).ready(function ($) {
                                 $("#s-main-content").css('display', 'block');
 
                                 // ui
-                                var containerHeight = $("#s-score-cotianer").height();
-                                var winHeight = $("body").height();
+                                var footerHeight = document.getElementById("s-footer").offsetHeight;
+                                var containerHeight = document.getElementById("s-main-content").offsetHeight + footerHeight;//css("height");
                                 
-                                console.log(containerHeight);
+                                var winHeight = document.body.clientHeight; //$("body").height();
+                                
+                                // alert("container:" + containerHeight);
+                                // alert("winHeight:" + winHeight);
                                 console.log(winHeight);
                                 if(containerHeight > (winHeight)) {
-                                    $(".content-imgs").css("width", "20%");
-                                    $(".content-score").css("margin-left", "20%");
+                                    $(".content-imgs").css("width", "26%");
+                                    $(".content-score").css("margin-left", "26%");
                                     // alert("change");
                                     // $(".content-score").css("width", "80%");
                                     console.log("change");

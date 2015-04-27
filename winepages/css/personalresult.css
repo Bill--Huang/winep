@@ -87,10 +87,10 @@
 }
 
 #s-footer {
-	margin-top: 3%;
+	/*margin-top: 3%;*/
 	width: 100%;
-	/*position: absolute;*/
-	/*top: 90%;*/
+	position: absolute;
+	top: 100%;
 	/*margin-bottom: 12%;*/
 }
 
